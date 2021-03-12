@@ -27,12 +27,12 @@ class HomeScreenState extends State<HomeScreen> {
       appBar:AppBar(
       automaticallyImplyLeading: false,
               title: Text("SheHack"),
-              leading: MaterialButton(
+              leading: RawMaterialButton(
                 elevation: 15,
                 shape: CircleBorder(),
-                color:Colors.white,
+                fillColor:Colors.white,
 
-                child: Image.asset('images/Asset 3.png', colorBlendMode: BlendMode.colorDodge),
+                child: Image.asset('images/Helping hand (1).png'),//, colorBlendMode: BlendMode.colorDodge),
                   onPressed: () {
                     Navigator.push(
                         context,

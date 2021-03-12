@@ -51,14 +51,14 @@ class _SplashPageState extends State<SplashPage> {
                       child:Container(
                         //height: double.infinity,
                         height: 400.0,
-                        width:210.0,
+                        width:400.0,
 
                         decoration: new BoxDecoration(
 
-                          // image: DecorationImage(
-                          //     image: AssetImage('images/SettleIcon.jpeg'),
-                          //     fit: BoxFit.fill
-                          // ),
+                          image: DecorationImage(
+                              image: AssetImage('images/Helping hand (1).png'),
+                              fit: BoxFit.fill
+                          ),
                         ),
                       )
 

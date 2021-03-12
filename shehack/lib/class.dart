@@ -3,6 +3,9 @@ class Person {
   String username;
   String pass;
   String email;
+  String city;
+  String contactNo;
+  
   void getName(String name) {
     this.name = name;
   }

@@ -24,6 +24,7 @@ class _ProfileState extends State<Profile> {
   FirebaseAuth auth = FirebaseAuth.instance;
   User curr;
   String username;
+  String initial;
 
   @override
   void initState() {
@@ -34,6 +35,7 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     curr= auth.currentUser;
     username=curr.displayName;
+    initial= username.substring(0,1);
   
     return Scaffold(
       body:Column(
@@ -43,13 +45,13 @@ class _ProfileState extends State<Profile> {
              child: Container(
                decoration: BoxDecoration(
                  borderRadius: BorderRadius.only(bottomRight: Radius.circular(30.0), bottomLeft: Radius.circular(30.0)),
-                 color: Colors.blueAccent,
+                 color: Color(0xff00ccff),//Colors.pinkAccent,
                ),
                width: (MediaQuery.of(context).size.width),
                child: SafeArea(
                  child: Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                   crossAxisAlignment: CrossAxisAlignment.center,
+                   //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                    children: [
                      Row(
                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -79,12 +81,30 @@ class _ProfileState extends State<Profile> {
                          )
                        ],
                      ),
+                     SizedBox(
+                       height: 10,
+                     ),
+                     CircleAvatar(
+                       backgroundColor: Colors.pinkAccent,//Color(0xff00ccff),
+                       maxRadius: 40,
+                       child: Text(
+                           '$initial',
+                           style: TextStyle(
+                             fontSize: 30.0,
+                             fontWeight: FontWeight.bold,
+                             color: Colors.white,//Color(0xff00ccff),//Colors.pinkAccent,
+                           ),
+                       ),
+                     ),
                      Padding(
                        padding: const EdgeInsets.all(15.0),
                        child: Row(
                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                          children: [
                            Row(
+                             mainAxisAlignment: MainAxisAlignment.center,
+                             crossAxisAlignment: CrossAxisAlignment.center,
                              children: [
                               //  Image.asset(
                               //    'images/defaultProfile.png',
