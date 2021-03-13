@@ -25,6 +25,7 @@ class _EditProfileState extends State<EditProfile> {
       inAsyncCall: showSpinner,
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Color(0xFF5CE1E6),
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -36,6 +37,7 @@ class _EditProfileState extends State<EditProfile> {
                 ),
               ),
               FlatButton(
+
                 onPressed: ()async{
                   if(username!=null&& username!='') {
                     setState(() {
@@ -78,7 +80,7 @@ class _EditProfileState extends State<EditProfile> {
                     color: Colors.white,
                   ),
                 ),
-                color: Colors.blue,
+                color: Color(0xFF5CE1E6),
               ),
 
             ],
@@ -90,19 +92,19 @@ class _EditProfileState extends State<EditProfile> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Image.asset(
-                  'images/defaultProfile.png',
-                  colorBlendMode: BlendMode.colorDodge,
-                  width: 75,
-                  height: 75,
-                ),
-                FlatButton(
-                  onPressed: (){},
-                  child: Text(
-                      'Edit Profile Picture'
-                  ),
+                // Image.asset(
+                //   'images/defaultProfile.png',
+                //   colorBlendMode: BlendMode.colorDodge,
+                //   width: 75,
+                //   height: 75,
+                // ),
+                // FlatButton(
+                //   onPressed: (){},
+                //   child: Text(
+                //       'Edit Profile Picture'
+                //   ),
                   //color: Colors.white,
-                ),
+                //),
                 SizedBox(
                   height: 10,
                 ),
@@ -110,13 +112,13 @@ class _EditProfileState extends State<EditProfile> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      'Name',
+                      'Name:',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     SizedBox(
-                      width: 10,
+                      width: 73,
                     ),
 
                     Container(
@@ -129,6 +131,68 @@ class _EditProfileState extends State<EditProfile> {
                         onChanged: (String value){
                           //await curr.updateProfile(displayName: value);
                           username=value;
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Phone number:',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+
+                    Container(
+                      width: 250,
+                      child: TextField(
+                        //controller: _controller,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                        ),
+                        onChanged: (String value){
+                          //await curr.updateProfile(displayName: value);
+                          //username=value;
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Location/City:',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 19,
+                    ),
+
+                    Container(
+                      width: 250,
+                      child: TextField(
+                        //controller: _controller,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                        ),
+                        onChanged: (String value){
+                          //await curr.updateProfile(displayName: value);
+                          //username=value;
                         },
                       ),
                     ),

@@ -114,7 +114,7 @@ class FormViewState extends State<FormView>{
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
-        color: Colors.blue,
+        color: Color(0xFF5CE1E6),
         child: Text(
           'CREATE',
           style: TextStyle(
@@ -135,6 +135,7 @@ class FormViewState extends State<FormView>{
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFF5CE1E6),
         title: Text("New Event"),
       ),
       body:   AnnotatedRegion<SystemUiOverlayStyle>(
