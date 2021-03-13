@@ -1,143 +1,234 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 final _firestore = FirebaseFirestore.instance;
-class FormView extends StatefulWidget{
+
+class FormView extends StatefulWidget {
   @override
-  FormViewState createState()=>FormViewState();
+  FormViewState createState() => FormViewState();
 }
-class FormViewState extends State<FormView>{
+
+class FormViewState extends State<FormView> {
   Widget buildGroup() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      textDirection: TextDirection.ltr,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(
-          'Name of the Event',
-          style: TextStyle(
-            fontSize: 16,
+          'Create new Event',
+          style: GoogleFonts.raleway(fontSize: 30, fontWeight: FontWeight.w700),
+        ),
+        SizedBox(height: 40.0),
+        Text(
+          "Event Title",
+          style: GoogleFonts.montserrat(
+            fontSize: 20,
           ),
         ),
-        SizedBox(height: 10.0),
+        SizedBox(
+          height: 10,
+        ),
         Container(
+          decoration: BoxDecoration(
+              color: Color(0XFFEFF3F6),
+              borderRadius: BorderRadius.circular(30.0),
+              boxShadow: [
+                BoxShadow(
+                    color: Color.fromRGBO(0, 0, 0, 0.1),
+                    offset: Offset(6, 2),
+                    blurRadius: 6.0,
+                    spreadRadius: 3.0),
+                BoxShadow(
+                    color: Color.fromRGBO(255, 255, 255, 0.9),
+                    offset: Offset(-6, -2),
+                    blurRadius: 6.0,
+                    spreadRadius: 3.0)
+              ]),
           alignment: Alignment.centerLeft,
           height: 60.0,
           child: TextFormField(
-            style: TextStyle(
-              color: Colors.black,
-              fontFamily: 'OpenSans',
+            style: GoogleFonts.raleway(
+              fontSize: 15,
             ),
             decoration: InputDecoration(
-              contentPadding: EdgeInsets.only(top: 14.0),
+              contentPadding: EdgeInsets.all(14),
+              border: InputBorder.none,
               hintText: 'Enter Event\'s Name',
             ),
-            onChanged: (input1)=> name = input1,
+            onChanged: (input1) => name = input1,
           ),
         ),
       ],
     );
   }
-    Widget buildAbout() {
+
+  Widget buildAbout() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(
-          'Add About the Event',
-          style: TextStyle(
-            fontSize: 16,
+          "Description",
+          style: GoogleFonts.montserrat(
+            fontSize: 20,
           ),
         ),
-        SizedBox(height: 10.0),
+        SizedBox(
+          height: 10,
+        ),
         Container(
           alignment: Alignment.centerLeft,
-          height: 60.0,
-              child:TextFormField(
+          decoration: BoxDecoration(
+              color: Color(0XFFEFF3F6),
+              borderRadius: BorderRadius.circular(30.0),
+              boxShadow: [
+                BoxShadow(
+                    color: Color.fromRGBO(0, 0, 0, 0.1),
+                    offset: Offset(6, 2),
+                    blurRadius: 6.0,
+                    spreadRadius: 3.0),
+                BoxShadow(
+                    color: Color.fromRGBO(255, 255, 255, 0.9),
+                    offset: Offset(-6, -2),
+                    blurRadius: 6.0,
+                    spreadRadius: 3.0)
+              ]),
+          child: TextFormField(
             controller: addTextController,
             keyboardType: TextInputType.multiline,
-            style: TextStyle(
-              color: Colors.black,
-              fontFamily: 'OpenSans',
+            maxLines: null,
+            style: GoogleFonts.raleway(
+              fontSize: 15,
             ),
             decoration: InputDecoration(
-              contentPadding: EdgeInsets.only(top: 14.0),
+              contentPadding: EdgeInsets.all(14),
+              border: InputBorder.none,
               hintText: 'What is this event about?',
             ),
-            onChanged: (input2)=> about = input2,
+            onChanged: (input2) => about = input2,
           ),
         ),
       ],
     );
   }
+
   Widget buildReach() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(
-          'Contact',
-          style: TextStyle(
-            fontSize: 16,
+          "To know more",
+          style: GoogleFonts.montserrat(
+            fontSize: 20,
           ),
         ),
-        SizedBox(height: 10.0),
+        SizedBox(
+          height: 10,
+        ),
         Container(
+          decoration: BoxDecoration(
+              color: Color(0XFFEFF3F6),
+              borderRadius: BorderRadius.circular(100.0),
+              boxShadow: [
+                BoxShadow(
+                    color: Color.fromRGBO(0, 0, 0, 0.1),
+                    offset: Offset(6, 2),
+                    blurRadius: 6.0,
+                    spreadRadius: 3.0),
+                BoxShadow(
+                    color: Color.fromRGBO(255, 255, 255, 0.9),
+                    offset: Offset(-6, -2),
+                    blurRadius: 6.0,
+                    spreadRadius: 3.0)
+              ]),
           alignment: Alignment.centerLeft,
           height: 60.0,
           child: TextFormField(
-            style: TextStyle(
-              color: Colors.black,
-              fontFamily: 'OpenSans',
+            style: GoogleFonts.raleway(
+              fontSize: 15,
             ),
             decoration: InputDecoration(
-              contentPadding: EdgeInsets.only(top: 14.0),
+              contentPadding: EdgeInsets.all(14),
+              border: InputBorder.none,
               hintText: 'Enter Phone/Mail/Invite Link/Website',
             ),
-            onChanged: (input1)=> contact = input1,
+            onChanged: (input1) => contact = input1,
           ),
         ),
       ],
     );
   }
-   Widget buildSubmitBtn() {
-        return Container(
-          padding: EdgeInsets.symmetric(vertical: 25.0),
-          width: double.infinity,
-          child: RaisedButton(
-            elevation: 5.0,
-            onPressed:(){
-               _firestore.collection('forms').add({
-                'name':name,
-                'about':about,
-                'contact':contact,
-              });
-               Navigator.pop(context);
-            },
+
+  Widget buildSubmitBtn() {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 15.0),
+      width: 100,
+      child: RaisedButton(
+        elevation: 5.0,
+        onPressed: () {
+          _firestore.collection('forms').add({
+            'name': name,
+            'about': about,
+            'contact': contact,
+            'user': FirebaseAuth.instance.currentUser.displayName,
+          });
+          Navigator.pop(context);
+        },
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
-        color: Colors.blue,
+        color: Color(0xFF5CE1E6),
         child: Text(
           'CREATE',
-          style: TextStyle(
-            color: Colors.white,
-            letterSpacing: 1.5,
-            fontSize: 18.0,
+          style: GoogleFonts.montserrat(
             fontWeight: FontWeight.bold,
-            fontFamily: 'OpenSans',
+            fontSize: 15,
+            textStyle: TextStyle(
+              shadows: <Shadow>[
+                Shadow(
+                  offset: Offset(3.0, 3.0),
+                  blurRadius: 3.0,
+                  color: Colors.cyan[700],
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
-    final addTextController = TextEditingController();
-    String name;
-    String about;
-    String contact;
-  Widget build(BuildContext context){
+
+  final addTextController = TextEditingController();
+  String name;
+  String about;
+  String contact;
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("New Event"),
+        title: Text(
+          "New Event",
+          style: GoogleFonts.montserrat(
+            fontWeight: FontWeight.bold,
+            textStyle: TextStyle(
+              color: Colors.grey[100],
+              shadows: <Shadow>[
+                Shadow(
+                  offset: Offset(3.0, 3.0),
+                  blurRadius: 3.0,
+                  color: Colors.black45,
+                ),
+                //
+              ],
+            ),
+          ),
+        ),
+        backgroundColor: Color(0xFF5CE1E6),
       ),
-      body:   AnnotatedRegion<SystemUiOverlayStyle>(
+      body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -153,21 +244,21 @@ class FormViewState extends State<FormView>{
                   physics: AlwaysScrollableScrollPhysics(),
                   padding: EdgeInsets.symmetric(
                     horizontal: 40.0,
-                    vertical: 120.0,
+                    vertical: 30.0,
                   ),
                   child: Column(
                     children: <Widget>[
                       buildGroup(),
                       SizedBox(
-                        height: 10.0,
+                        height: 30.0,
                       ),
                       buildAbout(),
                       SizedBox(
-                        height: 10.0,
+                        height: 30.0,
                       ),
                       buildReach(),
                       SizedBox(
-                        height: 10.0,
+                        height: 30.0,
                       ),
                       buildSubmitBtn(),
                     ],
@@ -178,6 +269,6 @@ class FormViewState extends State<FormView>{
           ),
         ),
       ),
-      );
+    );
   }
 }

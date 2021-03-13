@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shehack/view.dart';
 import 'package:shehack/form.dart';
 import 'Profile.dart';
@@ -23,10 +24,26 @@ class HomeScreenState extends State<HomeScreen> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF6F6F6),
+      backgroundColor: Color(0XFFEFF3F6),
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text("Helping Hands", style: TextStyle(color: Colors.black)),
+        title: Text(
+          "Helping Hands",
+          style: GoogleFonts.montserrat(
+            fontWeight: FontWeight.bold,
+            textStyle: TextStyle(
+              color: Colors.grey[100],
+              shadows: <Shadow>[
+                Shadow(
+                  offset: Offset(3.0, 3.0),
+                  blurRadius: 3.0,
+                  color: Colors.black45,
+                ),
+                //
+              ],
+            ),
+          ),
+        ),
         leading: RawMaterialButton(
             elevation: 15,
             shape: CircleBorder(),
@@ -119,12 +136,12 @@ class HomeScreenState extends State<HomeScreen> {
                                     alignment: Alignment.topLeft,
                                     child: Text(
                                       form.data()['about'],
+                                      maxLines: 1,
                                       style: TextStyle(
                                         fontSize: 13,
                                         color: Colors.black54,
                                       ),
                                       overflow: TextOverflow.ellipsis,
-                                      maxLines: 6,
                                     ),
                                   ),
                                 ],
