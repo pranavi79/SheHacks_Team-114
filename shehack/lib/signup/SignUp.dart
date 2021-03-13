@@ -23,6 +23,7 @@ class SignUpScreen extends StatefulWidget {
 class SignUpScreenState extends State<SignUpScreen> {
 
   fireauth _fire=fireauth();
+  FirebaseAuth auth = FirebaseAuth.instance;
 
 Widget buildSignUp() {
     return Row(
@@ -283,7 +284,7 @@ Widget buildSignUp() {
       await user.user.updateProfile(displayName: _name,);
       await user.user.updateEmail(_email);
       _fire.Reload();
-      User curr = await _fire.Current();
+      User curr = auth.currentUser;//await _fire.Current();
 
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => HomeScreen(curr: curr)));

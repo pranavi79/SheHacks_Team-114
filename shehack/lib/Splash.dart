@@ -15,6 +15,7 @@ enum LoginStatus { NotDetermined, LoggedIn, NotLoggedIn }
 
 class _SplashPageState extends State<SplashPage> {
   LoginStatus status = LoginStatus.NotDetermined;
+  FirebaseAuth auth = FirebaseAuth.instance;
   User curr = null;
   @override
   void initState() {
@@ -77,7 +78,7 @@ class _SplashPageState extends State<SplashPage> {
       case LoginStatus.LoggedIn:
         {
           return HomeScreen(
-            curr: null,
+            curr: auth.currentUser,
           );
         }
       case LoginStatus.NotLoggedIn:

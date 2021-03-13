@@ -165,7 +165,7 @@ class FormViewState extends State<FormView> {
   Widget buildSubmitBtn() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 15.0),
-      width: 100,
+      width: 130,
       child: RaisedButton(
         elevation: 5.0,
         onPressed: () {

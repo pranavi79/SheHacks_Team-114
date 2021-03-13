@@ -19,6 +19,8 @@ class HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     curr = widget.curr;
+    print("in home:");
+    print(curr);
     super.initState();
   }
 

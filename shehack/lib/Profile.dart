@@ -29,12 +29,13 @@ class _ProfileState extends State<Profile> {
 
   @override
   void initState() {
+    curr= widget.curr;
     super.initState();
 
   }
 
   Widget build(BuildContext context) {
-    curr= auth.currentUser;
+    //curr=auth.currentUser;
     username=curr.displayName;
     mail=curr.email;
     initial= username.substring(0,1);
