@@ -10,7 +10,8 @@ class ViewScreen extends StatefulWidget {
   final String about;
   final String contact;
   final String user;
-  ViewScreen({this.name, this.about, this.contact, this.user});
+  final String location;
+  ViewScreen({this.name, this.about, this.contact, this.location, this.user});
 
   @override
   _ViewScreenState createState() => _ViewScreenState();
@@ -138,6 +139,30 @@ class _ViewScreenState extends State<ViewScreen> {
                             Flexible(
                               child: Text(
                                 widget.contact,
+                                style: GoogleFonts.roboto(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.normal),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 25.0,
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              "Location:",
+                              style: GoogleFonts.roboto(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Flexible(
+                              child: Text(
+                                widget.location,
                                 style: GoogleFonts.roboto(
                                     fontSize: 18,
                                     fontWeight: FontWeight.normal),

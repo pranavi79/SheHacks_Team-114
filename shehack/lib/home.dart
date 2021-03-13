@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shehack/view.dart';
 import 'package:shehack/form.dart';
 import 'Profile.dart';
-//import 'package:flutter/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -85,13 +84,14 @@ class HomeScreenState extends State<HomeScreen> {
                           name: form.data()['name'],
                           about: form.data()['about'],
                           contact: form.data()['contact'],
+                          location: form.data()['location'],
                           user: form.data()['user'],
                         ),
                       ),
                     ),
                     child: Container(
                       padding: EdgeInsets.symmetric(
-                        horizontal: 20,
+                        horizontal: 15,
                         vertical: 15,
                       ),
                       child: Container(

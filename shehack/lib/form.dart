@@ -115,6 +115,53 @@ class FormViewState extends State<FormView> {
     );
   }
 
+  Widget buildLocation() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          "Location",
+          style: GoogleFonts.montserrat(
+            fontSize: 20,
+          ),
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Container(
+          decoration: BoxDecoration(
+              color: Color(0XFFEFF3F6),
+              borderRadius: BorderRadius.circular(100.0),
+              boxShadow: [
+                BoxShadow(
+                    color: Color.fromRGBO(0, 0, 0, 0.1),
+                    offset: Offset(6, 2),
+                    blurRadius: 6.0,
+                    spreadRadius: 3.0),
+                BoxShadow(
+                    color: Color.fromRGBO(255, 255, 255, 0.9),
+                    offset: Offset(-6, -2),
+                    blurRadius: 6.0,
+                    spreadRadius: 3.0)
+              ]),
+          alignment: Alignment.centerLeft,
+          height: 60.0,
+          child: TextFormField(
+            style: GoogleFonts.raleway(
+              fontSize: 15,
+            ),
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.all(14),
+              border: InputBorder.none,
+              hintText: 'Enter City/Locality',
+            ),
+            onChanged: (input3) => location = input3,
+          ),
+        ),
+      ],
+    );
+  }
+
   Widget buildReach() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -155,7 +202,7 @@ class FormViewState extends State<FormView> {
               border: InputBorder.none,
               hintText: 'Enter Phone/Mail/Invite Link/Website',
             ),
-            onChanged: (input1) => contact = input1,
+            onChanged: (input4) => contact = input4,
           ),
         ),
       ],
@@ -172,6 +219,7 @@ class FormViewState extends State<FormView> {
           _firestore.collection('forms').add({
             'name': name,
             'about': about,
+            'location': location,
             'contact': contact,
             'user': FirebaseAuth.instance.currentUser.displayName,
           });
@@ -206,6 +254,7 @@ class FormViewState extends State<FormView> {
   String name;
   String about;
   String contact;
+  String location;
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -221,7 +270,6 @@ class FormViewState extends State<FormView> {
                   blurRadius: 3.0,
                   color: Colors.black45,
                 ),
-                //
               ],
             ),
           ),
@@ -253,6 +301,10 @@ class FormViewState extends State<FormView> {
                         height: 30.0,
                       ),
                       buildAbout(),
+                      SizedBox(
+                        height: 30.0,
+                      ),
+                      buildLocation(),
                       SizedBox(
                         height: 30.0,
                       ),
