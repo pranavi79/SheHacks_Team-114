@@ -22,7 +22,7 @@ class _ViewScreenState extends State<ViewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.cyan[50],
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Color(0xFF5CE1E6),
         brightness: Brightness.dark,

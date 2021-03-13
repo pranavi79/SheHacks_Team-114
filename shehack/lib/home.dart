@@ -40,13 +40,12 @@ class HomeScreenState extends State<HomeScreen> {
                   blurRadius: 3.0,
                   color: Colors.black45,
                 ),
-                //
               ],
             ),
           ),
         ),
         leading: RawMaterialButton(
-            elevation: 15,
+            elevation: 0,
             shape: CircleBorder(),
             fillColor: Colors.white,
             child: Image.asset(
@@ -60,7 +59,6 @@ class HomeScreenState extends State<HomeScreen> {
                           )));
             }),
         backgroundColor: Color(0xFF5CE1E6),
-        elevation: 0,
       ),
       body: StreamBuilder(
           stream: FirebaseFirestore.instance.collection('forms').snapshots(),
@@ -95,14 +93,23 @@ class HomeScreenState extends State<HomeScreen> {
                         vertical: 15,
                       ),
                       child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(5)),
-                            border: Border.all(
-                              width: 2,
-                              color: Colors.black38,
-                            )),
                         child: Row(
-                          children: <Widget>[
+                        children: <Widget>[
+                          Container(
+                            padding: EdgeInsets.all(2),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                            ),
+                            child: CircleAvatar(
+                              radius: 30,
+                              backgroundColor: Color(0xFF5CE1E6),
+                              child: Text(
+                                form.data()['name'][0],
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),),
+                            ),
+                          ),
                             Container(
                               width: MediaQuery.of(context).size.width * 0.65,
                               height: 50,

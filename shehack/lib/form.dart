@@ -235,15 +235,7 @@ class FormViewState extends State<FormView> {
           style: GoogleFonts.montserrat(
             fontWeight: FontWeight.bold,
             fontSize: 15,
-            textStyle: TextStyle(
-              shadows: <Shadow>[
-                Shadow(
-                  offset: Offset(3.0, 3.0),
-                  blurRadius: 3.0,
-                  color: Colors.cyan[700],
-                ),
-              ],
-            ),
+            color: Colors.white,
           ),
         ),
       ),

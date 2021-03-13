@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'utilities.dart';
 //import 'package:expense_manager/login/loginScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -31,11 +32,19 @@ Widget buildSignUp() {
       children: <Widget>[
         Text(
           'Sign Up',
-          style: TextStyle(
-            color: Colors.white,
-            fontFamily: 'OpenSans',
-            fontSize: 30.0,
+          style: GoogleFonts.montserrat(
+            fontSize: 30,
             fontWeight: FontWeight.bold,
+            textStyle: TextStyle(
+              color: Colors.white,
+              shadows: <Shadow>[
+                Shadow(
+                  offset: Offset(3.0, 3.0),
+                  blurRadius: 3.0,
+                  color: Colors.black45,
+                ),
+              ],
+            ),
           ),
         ),
       ],
@@ -188,21 +197,16 @@ Widget buildSignUp() {
           width: double.infinity,
           child: RaisedButton(
             elevation: 5.0,
-            onPressed:
-                        signUp,
-                //         AlertDialog(
-                //         title: Text("Welcome"),
-                //         content: Text("Verification link has been sent to your email"),
-                // ),
+            onPressed:signUp,
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
-        color: Colors.white,
+        color: Color(0xff99ffff),
         child: Text(
           'SIGN UP',
           style: TextStyle(
-            color: Color(0xFF527DAA),
+            color: Colors.white,
             letterSpacing: 1.5,
             fontSize: 18.0,
             fontWeight: FontWeight.bold,
@@ -229,10 +233,10 @@ Widget buildSignUp() {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Color(0xFF73AEF5),
-                      Color(0xFF61A4F1),
-                      Color(0xFF478DE0),
-                      Color(0xFF398AE5),
+                      Color(0xffccffff),
+                      Color(0xffd5ffee),
+                      Color(0xffccffff),
+                      Color(0xffcffdff),
                     ],
                     stops: [0.1, 0.4, 0.7, 0.9],
                   ),

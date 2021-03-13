@@ -45,9 +45,9 @@ class _ProfileState extends State<Profile> {
                 color: Colors.black, //blueAccent,
               ),
             ),
-            SizedBox(
-              width: 5,
-            ),
+            // SizedBox(
+            //   width: 5,
+            // ),
             Text(
               value,
               softWrap: false,
@@ -116,18 +116,18 @@ class _ProfileState extends State<Profile> {
             ),
           ),
         ),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.edit),
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => HomeScreen(curr: curr),
-                  ));
-            },
-          )
-        ],
+        // actions: <Widget>[
+        //   IconButton(
+        //     icon: Icon(Icons.edit),
+        //     onPressed: () {
+        //       Navigator.push(
+        //           context,
+        //           MaterialPageRoute(
+        //             builder: (context) => HomeScreen(curr: curr),
+        //           ));
+        //     },
+        //   )
+        // ],
       ),
       body: Container(
         child: Column(children: <Widget>[
@@ -138,7 +138,8 @@ class _ProfileState extends State<Profile> {
                 color:
                     Color(0xffccffff), //Color(0xff00ccff),//Color(0xFF5CE1E6),
               ),
-              width: (MediaQuery.of(context).size.width),
+              height: double.infinity,
+              width: double.infinity,
               child: SafeArea(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -149,11 +150,11 @@ class _ProfileState extends State<Profile> {
                     ),
                     CircleAvatar(
                       backgroundColor: Color(0xFF5CE1E6), //Color(0xff00ccff),
-                      maxRadius: 45,
+                      maxRadius: 100,
                       child: Text(
                         '$initial',
                         style: TextStyle(
-                          fontSize: 35.0,
+                          fontSize: 50.0,
                           fontWeight: FontWeight.bold,
                           color: Colors
                               .white, //Color(0xff00ccff),//Color(0xFF5CE1E6),
@@ -182,10 +183,16 @@ class _ProfileState extends State<Profile> {
                       ),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
-                    details("Email:", mail),
-                    details("Phone no:", ""),
+                    Text(
+                      mail,
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                      ),
+                    //details("Mail:", mail),
+                    details("Phone no:",""),
                     details("Location:", ""),
                   ],
                 ),
@@ -207,14 +214,6 @@ class _ProfileState extends State<Profile> {
             fontSize: 15,
             textStyle: TextStyle(
               color: Colors.grey[100],
-              shadows: <Shadow>[
-                Shadow(
-                  offset: Offset(3.0, 3.0),
-                  blurRadius: 3.0,
-                  color: Colors.black45,
-                ),
-                //
-              ],
             ),
 
             //icon: Icon(Icons.thumb_up),
