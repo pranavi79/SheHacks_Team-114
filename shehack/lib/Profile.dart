@@ -4,9 +4,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'edit_profile.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+
+
+final _firestore = FirebaseFirestore.instance;
 
 class Profile extends StatefulWidget {
   final User curr;
@@ -24,6 +27,8 @@ class _ProfileState extends State<Profile> {
   String username;
   String initial;
   String mail;
+  String location;
+  String phone;
 
   @override
   void initState() {
@@ -61,32 +66,6 @@ class _ProfileState extends State<Profile> {
         ),
       ),
     );
-    // return Column(
-    //   children: [
-    //     SizedBox(
-    //       height: 5,
-    //     ),
-    //     Padding(
-    //       padding: const EdgeInsets.only(left: 15.0),
-    //       child: Row(
-    //         mainAxisAlignment: MainAxisAlignment.start,
-    //         children: [
-    //           SizedBox(
-    //             width: 10,
-    //           ),
-    //           Text(
-    //             details,
-    //             style: GoogleFonts.montserrat(
-    //               fontSize: 20.0,
-    //               fontWeight: FontWeight.bold,
-    //               color: Colors.black, //blueAccent,
-    //             ),
-    //           ),
-    //         ],
-    //       ),
-    //     ),
-    //   ],
-    // );
   }
 
   Widget build(BuildContext context) {
@@ -94,6 +73,7 @@ class _ProfileState extends State<Profile> {
     username = curr.displayName;
     mail = curr.email;
     initial = username.substring(0, 1);
+
 
     return Scaffold(
       appBar: AppBar(
@@ -123,7 +103,7 @@ class _ProfileState extends State<Profile> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => HomeScreen(curr: curr),
+                    builder: (context) => EditProfile(),
                   ));
             },
           )
@@ -185,8 +165,48 @@ class _ProfileState extends State<Profile> {
                       height: 20,
                     ),
                     details("Email:", mail),
-                    details("Phone no:", ""),
-                    details("Location:", ""),
+                    StreamBuilder<QuerySnapshot>(
+                        stream: _firestore
+                            .collection('people')
+                            .where('email', isEqualTo: mail)
+                            .snapshots(),
+                        builder: (context, snapshot) {
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+                              ),
+                            );
+                          }
+                          else{
+                            final t = snapshot.data.docs[0];
+                            phone=t.data()['phone'];
+                            return details("Phone no:", phone);
+                          }
+                        }
+                    ),
+
+                    StreamBuilder<QuerySnapshot>(
+                        stream: _firestore
+                            .collection('people')
+                            .where('email', isEqualTo: mail)
+                            .snapshots(),
+                        builder: (context, snapshot) {
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+                              ),
+                            );
+                          }
+                          else{
+                            final t = snapshot.data.docs[0];
+                            location=t.data()['location'];
+                            return details("Location:", location);
+                          }
+                        }
+                        ),
+
                   ],
                 ),
               ),
