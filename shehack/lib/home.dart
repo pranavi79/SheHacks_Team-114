@@ -84,6 +84,7 @@ class HomeScreenState extends State<HomeScreen> {
                           contact: form.data()['contact'],
                           location: form.data()['location'],
                           user: form.data()['user'],
+                          members:form.data()['interestedPeople']
                         ),
                       ),
                     ),

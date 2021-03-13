@@ -11,7 +11,8 @@ class ViewScreen extends StatefulWidget {
   final String contact;
   final String user;
   final String location;
-  ViewScreen({this.name, this.about, this.contact, this.location, this.user});
+  final List<dynamic>members;
+  ViewScreen({this.name, this.about, this.contact, this.location, this.user,this.members});
 
   @override
   _ViewScreenState createState() => _ViewScreenState();
@@ -209,6 +210,7 @@ class _ViewScreenState extends State<ViewScreen> {
             onPressed: () {
               //Append current user's username to the list
               //call buildInterestedPeople()
+              widget.members.add(widget.user);
             },
             child: Icon(
               Icons.favorite,
