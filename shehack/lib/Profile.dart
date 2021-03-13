@@ -37,8 +37,10 @@ class _ProfileState extends State<Profile> {
   Widget details(String details, String value) {
     return Expanded(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Text(
               details,
@@ -48,9 +50,9 @@ class _ProfileState extends State<Profile> {
                 color: Colors.black, //blueAccent,
               ),
             ),
-            // SizedBox(
-            //   width: 5,
-            // ),
+            SizedBox(
+              width: 5,
+            ),
             Text(
               value,
               softWrap: false,
@@ -120,7 +122,7 @@ class _ProfileState extends State<Profile> {
               child: SafeArea(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SizedBox(
                       height: 40,

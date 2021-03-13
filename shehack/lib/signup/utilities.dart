@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 String radioItem = '';
 String radioItem2 = '';
 String birthDateInString;
@@ -13,16 +14,16 @@ final kHintTextStyle = TextStyle(
 );
 
 final kLabelStyle = TextStyle(
-              fontSize: 10,
-              color: Colors.white,
-              shadows: <Shadow>[
-                Shadow(
-                  offset: Offset(1.0, 1.0),
-                  blurRadius: 2.0,
-                  color: Colors.black45,
-                ),
-              ],
-            );
+  fontSize: 15,
+  color: Colors.black38,
+  shadows: <Shadow>[
+    Shadow(
+      offset: Offset(1.0, 1.0),
+      blurRadius: 2.0,
+      color: Colors.black45,
+    ),
+  ],
+);
 
 final kBoxDecorationStyle = BoxDecoration(
   color: Colors.white,

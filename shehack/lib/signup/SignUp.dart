@@ -10,7 +10,6 @@ import 'package:shehack/fireauth.dart';
 import 'package:shehack/home.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-
 final _firestore = FirebaseFirestore.instance;
 
 String _email;
@@ -19,33 +18,36 @@ String _name;
 String _username;
 String _location;
 String _phone;
-AlertDialog alertDialog=AlertDialog(
+AlertDialog alertDialog = AlertDialog(
   title: Text("Welcome"),
   content: Text("Verification link has been sent to your email"),
-  );
+);
+
 class SignUpScreen extends StatefulWidget {
   @override
   SignUpScreenState createState() => SignUpScreenState();
 }
-class SignUpScreenState extends State<SignUpScreen> {
 
-  fireauth _fire=fireauth();
+class SignUpScreenState extends State<SignUpScreen> {
+  fireauth _fire = fireauth();
   FirebaseAuth auth = FirebaseAuth.instance;
 
-Widget buildSignUp() {
+  Widget buildSignUp() {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(
           'Sign Up',
+          textAlign: TextAlign.center,
           style: GoogleFonts.montserrat(
-            fontSize: 30,
+            fontSize: 40,
             fontWeight: FontWeight.bold,
             textStyle: TextStyle(
-              color: Colors.white,
+              color: Colors.black54,
               shadows: <Shadow>[
                 Shadow(
-                  offset: Offset(3.0, 3.0),
+                  offset: Offset(2.0, 2.0),
                   blurRadius: 3.0,
                   color: Colors.black45,
                 ),
@@ -80,18 +82,19 @@ Widget buildSignUp() {
               contentPadding: EdgeInsets.only(top: 14.0),
               prefixIcon: Icon(
                 Icons.account_box,
-                color: Colors.grey,
+                color: Colors.pink[300],
               ),
               hintText: 'Enter Full Name',
               hintStyle: kHintTextStyle,
             ),
-            onChanged: (String input1)=> _name = input1,
+            onChanged: (String input1) => _name = input1,
           ),
         ),
       ],
     );
   }
-   Widget buildUsername() {
+
+  Widget buildUsername() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -114,7 +117,7 @@ Widget buildSignUp() {
               contentPadding: EdgeInsets.only(top: 14.0),
               prefixIcon: Icon(
                 Icons.account_box,
-                color: Colors.grey,
+                color: Colors.pink[300],
               ),
               hintText: 'Enter Username',
               hintStyle: kHintTextStyle,
@@ -125,7 +128,8 @@ Widget buildSignUp() {
       ],
     );
   }
-  Widget buildPhone(){
+
+  Widget buildPhone() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -149,7 +153,7 @@ Widget buildSignUp() {
               contentPadding: EdgeInsets.only(top: 14.0),
               prefixIcon: Icon(
                 Icons.phone,
-                color: Colors.grey,
+                color: Colors.pink[300],
               ),
               hintText: 'Enter your Phone No.',
               hintStyle: kHintTextStyle,
@@ -159,7 +163,6 @@ Widget buildSignUp() {
         ),
       ],
     );
-
   }
 
   Widget buildEmailTF() {
@@ -186,7 +189,7 @@ Widget buildSignUp() {
               contentPadding: EdgeInsets.only(top: 14.0),
               prefixIcon: Icon(
                 Icons.email,
-                color: Colors.grey,
+                color: Colors.pink[300],
               ),
               hintText: 'Enter your Email',
               hintStyle: kHintTextStyle,
@@ -198,7 +201,7 @@ Widget buildSignUp() {
     );
   }
 
-  Widget buildLocation(){
+  Widget buildLocation() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -222,7 +225,7 @@ Widget buildSignUp() {
               contentPadding: EdgeInsets.only(top: 14.0),
               prefixIcon: Icon(
                 Icons.location_city,
-                color: Colors.grey,
+                color: Colors.pink[300],
               ),
               hintText: 'Enter where you live',
               hintStyle: kHintTextStyle,
@@ -232,7 +235,6 @@ Widget buildSignUp() {
         ),
       ],
     );
-
   }
 
   Widget buildPasswordTF() {
@@ -249,7 +251,7 @@ Widget buildSignUp() {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextFormField(
-            obscureText:true,
+            obscureText: true,
             style: TextStyle(
               color: Colors.black,
               fontFamily: 'OpenSans',
@@ -259,7 +261,7 @@ Widget buildSignUp() {
               contentPadding: EdgeInsets.only(top: 14.0),
               prefixIcon: Icon(
                 Icons.lock,
-                color: Colors.grey,
+                color: Colors.pink[300],
               ),
               hintText: 'Enter a Strong Password',
               hintStyle: kHintTextStyle,
@@ -270,18 +272,19 @@ Widget buildSignUp() {
       ],
     );
   }
+
   Widget buildSignUpBtn() {
-        return Container(
-          padding: EdgeInsets.symmetric(vertical: 25.0),
-          width: double.infinity,
-          child: RaisedButton(
-            elevation: 5.0,
-            onPressed:signUp,
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 25.0),
+      width: 200,
+      child: RaisedButton(
+        elevation: 5.0,
+        onPressed: signUp,
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
-        color: Color(0xff99ffff),
+        color: Colors.pink[300], //Color(0xff99ffff),
         child: Text(
           'SIGN UP',
           style: TextStyle(
@@ -295,7 +298,8 @@ Widget buildSignUp() {
       ),
     );
   }
-    @override
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: AnnotatedRegion<SystemUiOverlayStyle>(
@@ -333,7 +337,7 @@ Widget buildSignUp() {
                     children: <Widget>[
                       buildSignUp(),
                       SizedBox(
-                        height: 10.0,
+                        height: 30.0,
                       ),
                       buildName(),
                       SizedBox(
@@ -356,6 +360,9 @@ Widget buildSignUp() {
                         height: 10.0,
                       ),
                       buildPhone(),
+                      SizedBox(
+                        height: 10,
+                      ),
                       buildSignUpBtn(),
                     ],
                   ),
@@ -367,58 +374,58 @@ Widget buildSignUp() {
       ),
     );
   }
-  void signUp() async {                      //This function Signs the user up with firebase and handles any errors
-    if(_name!=null&& _username!=null) {           //The try block is called only if name and username are filled
-          try {
-            _firestore.collection('people').add({
-              'email': _email,
-              'location': _location,
-              'phone': _phone,
-            });
-      // AuthResult
 
+  void signUp() async {
+    //This function Signs the user up with firebase and handles any errors
+    if (_name != null && _username != null) {
+      //The try block is called only if name and username are filled
+      try {
+        _firestore.collection('people').add({
+          'email': _email,
+          'location': _location,
+          'phone': _phone,
+        });
+        // AuthResult
 
-      UserCredential user = await _fire.Create(_email, _password);
-      await user.user.updateProfile(displayName: _name,);
-      await user.user.updateEmail(_email);
-      _fire.Reload();
-      User curr = auth.currentUser;//await _fire.Current();
+        UserCredential user = await _fire.Create(_email, _password);
+        await user.user.updateProfile(
+          displayName: _name,
+        );
+        await user.user.updateEmail(_email);
+        _fire.Reload();
+        User curr = auth.currentUser; //await _fire.Current();
 
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => HomeScreen(curr: curr)));
-    }
-    catch (e) {                                                      //Handles any errors in the email and password and prints them as toasts
-      String s = e.message;
-      if (e.message == null) {
-        s = "Fill in the required fields.";                    //Is printed instead of "null" if any of the fields are left blank
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => HomeScreen(curr: curr)));
+      } catch (e) {
+        //Handles any errors in the email and password and prints them as toasts
+        String s = e.message;
+        if (e.message == null) {
+          s = "Fill in the required fields."; //Is printed instead of "null" if any of the fields are left blank
+        }
+        Fluttertoast.showToast(
+            msg: s,
+            toastLength: Toast.LENGTH_LONG,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 3,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 12.0);
+        /*setState(() {
+          loader=Colors.white;
+        });*/
       }
+    } else {
+      //Comes to else if The name or username is empty
       Fluttertoast.showToast(
-          msg: s,
+          //Prints error toast
+          msg: "Display name and username can not be empty.",
           toastLength: Toast.LENGTH_LONG,
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 3,
           backgroundColor: Colors.red,
           textColor: Colors.white,
-          fontSize: 12.0
-      );
-      /*setState(() {
-          loader=Colors.white;
-        });*/
+          fontSize: 12.0);
     }
-
   }
-
-  else{                                                               //Comes to else if The name or username is empty
-  Fluttertoast.showToast(                                             //Prints error toast
-  msg: "Display name and username can not be empty.",
-  toastLength: Toast.LENGTH_LONG,
-  gravity: ToastGravity.BOTTOM,
-  timeInSecForIosWeb: 3,
-  backgroundColor: Colors.red,
-  textColor: Colors.white,
-  fontSize: 12.0
-  );
-
-  }
-}
 }
