@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shehack/Profile.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class EditProfile extends StatefulWidget {
   @override
@@ -31,9 +32,17 @@ class _EditProfileState extends State<EditProfile> {
             children: [
               Text(
                 'Edit Profile',
-                style: TextStyle(
+                style:GoogleFonts.montserrat(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
+                  shadows: <Shadow>[
+                    Shadow(
+                      offset: Offset(3.0, 3.0),
+                      blurRadius: 3.0,
+                      color: Colors.black45,
+                    ),
+                    //
+                  ],
                 ),
               ),
               FlatButton(

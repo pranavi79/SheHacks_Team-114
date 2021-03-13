@@ -95,21 +95,6 @@ class LoginScreenState extends State<LoginScreen> {
       ],
     );
   }
-
-  Widget buildForgotPasswordBtn() {
-    return Container(
-      alignment: Alignment.centerRight,
-      child: FlatButton(
-        onPressed: () => print('Forgot Password Button Pressed'),
-        padding: EdgeInsets.only(right: 0.0),
-        child: Text(
-          'Forgot Password?',
-          style: kLabelStyle,
-        ),
-      ),
-    );
-  }
-
   Widget buildLoginBtn() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 25.0),
@@ -125,7 +110,7 @@ class LoginScreenState extends State<LoginScreen> {
         child: Text(
           'LOGIN',
           style: TextStyle(
-            color: Color(0xFF527DAA),
+            color:Color(0xff99ffff),
             letterSpacing: 1.5,
             fontSize: 18.0,
             fontWeight: FontWeight.bold,
@@ -158,11 +143,13 @@ class LoginScreenState extends State<LoginScreen> {
             ),
             TextSpan(
               text: 'Sign Up',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
-              ),
+               style: TextStyle(
+            color: Colors.white,
+            letterSpacing: 1.5,
+            fontSize: 18.0,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'OpenSans',
+          ),
             ),
           ],
         ),
@@ -187,10 +174,10 @@ class LoginScreenState extends State<LoginScreen> {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Color(0xFF73AEF5),
-                      Color(0xFF61A4F1),
-                      Color(0xFF478DE0),
-                      Color(0xFF398AE5),
+                      Color(0xffccffff),
+                      Color(0xffd5ffee),
+                      Color(0xffccffff),
+                      Color(0xffcffdff),
                     ],
                     stops: [0.1, 0.4, 0.7, 0.9],
                   ),
@@ -222,7 +209,6 @@ class LoginScreenState extends State<LoginScreen> {
                         height: 30.0,
                       ),
                       buildPasswordTF(),
-                      buildForgotPasswordBtn(),
                       buildLoginBtn(),
                       buildSignupBtn(),
                     ],

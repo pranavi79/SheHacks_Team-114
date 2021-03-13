@@ -67,7 +67,7 @@ class _SplashPageState extends State<SplashPage> {
                       //child: Padding(
                       child: Container(
                         //padding: EdgeInsets.only(bottom: 50.0, left: 10.0, right: 10.0, top:20.0),
-                        child: SpinKitRipple(color: Colors.blue),
+                        child: SpinKitRipple(color: Colors.white),
                       ),
                     ),
                     //)

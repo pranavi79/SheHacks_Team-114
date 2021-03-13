@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'utilities.dart';
 //import 'package:expense_manager/login/loginScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 //import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shehack/fireauth.dart';
 import 'package:shehack/home.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+
+final _firestore = FirebaseFirestore.instance;
+
 String _email;
 String _password;
 String _name;
 String _username;
+String _location;
+String _phone;
 AlertDialog alertDialog=AlertDialog(
   title: Text("Welcome"),
   content: Text("Verification link has been sent to your email"),
@@ -31,11 +38,19 @@ Widget buildSignUp() {
       children: <Widget>[
         Text(
           'Sign Up',
-          style: TextStyle(
-            color: Colors.white,
-            fontFamily: 'OpenSans',
-            fontSize: 30.0,
+          style: GoogleFonts.montserrat(
+            fontSize: 30,
             fontWeight: FontWeight.bold,
+            textStyle: TextStyle(
+              color: Colors.white,
+              shadows: <Shadow>[
+                Shadow(
+                  offset: Offset(3.0, 3.0),
+                  blurRadius: 3.0,
+                  color: Colors.black45,
+                ),
+              ],
+            ),
           ),
         ),
       ],
@@ -110,6 +125,42 @@ Widget buildSignUp() {
       ],
     );
   }
+  Widget buildPhone(){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          'Phone',
+          style: kLabelStyle,
+        ),
+        SizedBox(height: 10.0),
+        Container(
+          alignment: Alignment.centerLeft,
+          decoration: kBoxDecorationStyle,
+          height: 60.0,
+          child: TextFormField(
+            keyboardType: TextInputType.emailAddress,
+            style: TextStyle(
+              color: Colors.black,
+              fontFamily: 'OpenSans',
+            ),
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.only(top: 14.0),
+              prefixIcon: Icon(
+                Icons.phone,
+                color: Colors.grey,
+              ),
+              hintText: 'Enter your Phone No.',
+              hintStyle: kHintTextStyle,
+            ),
+            onChanged: (String input6) => _phone = input6,
+          ),
+        ),
+      ],
+    );
+
+  }
 
   Widget buildEmailTF() {
     return Column(
@@ -145,6 +196,43 @@ Widget buildSignUp() {
         ),
       ],
     );
+  }
+
+  Widget buildLocation(){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          'Location',
+          style: kLabelStyle,
+        ),
+        SizedBox(height: 10.0),
+        Container(
+          alignment: Alignment.centerLeft,
+          decoration: kBoxDecorationStyle,
+          height: 60.0,
+          child: TextFormField(
+            //obscureText:true,
+            style: TextStyle(
+              color: Colors.black,
+              fontFamily: 'OpenSans',
+            ),
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.only(top: 14.0),
+              prefixIcon: Icon(
+                Icons.location_city,
+                color: Colors.grey,
+              ),
+              hintText: 'Enter where you live',
+              hintStyle: kHintTextStyle,
+            ),
+            onChanged: (String input5) => _location = input5,
+          ),
+        ),
+      ],
+    );
+
   }
 
   Widget buildPasswordTF() {
@@ -188,21 +276,16 @@ Widget buildSignUp() {
           width: double.infinity,
           child: RaisedButton(
             elevation: 5.0,
-            onPressed:
-                        signUp,
-                //         AlertDialog(
-                //         title: Text("Welcome"),
-                //         content: Text("Verification link has been sent to your email"),
-                // ),
+            onPressed:signUp,
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
-        color: Colors.white,
+        color: Color(0xff99ffff),
         child: Text(
           'SIGN UP',
           style: TextStyle(
-            color: Color(0xFF527DAA),
+            color: Colors.white,
             letterSpacing: 1.5,
             fontSize: 18.0,
             fontWeight: FontWeight.bold,
@@ -229,10 +312,10 @@ Widget buildSignUp() {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Color(0xFF73AEF5),
-                      Color(0xFF61A4F1),
-                      Color(0xFF478DE0),
-                      Color(0xFF398AE5),
+                      Color(0xffccffff),
+                      Color(0xffd5ffee),
+                      Color(0xffccffff),
+                      Color(0xffcffdff),
                     ],
                     stops: [0.1, 0.4, 0.7, 0.9],
                   ),
@@ -265,6 +348,14 @@ Widget buildSignUp() {
                         height: 10.0,
                       ),
                       buildUsername(),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      buildLocation(),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      buildPhone(),
                       buildSignUpBtn(),
                     ],
                   ),
@@ -279,7 +370,14 @@ Widget buildSignUp() {
   void signUp() async {                      //This function Signs the user up with firebase and handles any errors
     if(_name!=null&& _username!=null) {           //The try block is called only if name and username are filled
           try {
+            _firestore.collection('people').add({
+              'email': _email,
+              'location': _location,
+              'phone': _phone,
+            });
       // AuthResult
+
+
       UserCredential user = await _fire.Create(_email, _password);
       await user.user.updateProfile(displayName: _name,);
       await user.user.updateEmail(_email);
