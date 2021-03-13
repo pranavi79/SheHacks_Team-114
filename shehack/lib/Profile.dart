@@ -99,10 +99,18 @@ class _ProfileState extends State<Profile> {
                              padding: EdgeInsets.only(left: 15.0,top: 20.0,right:15.0),// EdgeInsets.all(15.0),
                              child: Text(
                                "Welcome to Your Profile",
-                               style: TextStyle(
+                               style: GoogleFonts.montserrat(
                                  fontSize: 28.0,
                                  fontWeight: FontWeight.bold,
                                  color: Colors.white, //blueAccent,
+                                 shadows: <Shadow>[
+                                   Shadow(
+                                     offset: Offset(3.0, 3.0),
+                                     blurRadius: 3.0,
+                                     color: Colors.black45,
+                                   ),
+                                   //
+                                 ],
                                ),
                              ),
                            ),
