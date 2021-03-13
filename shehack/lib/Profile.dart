@@ -171,9 +171,6 @@ class _ProfileState extends State<Profile> {
                         fontSize: 20,
                       ),
                       ),
-                    //details("Mail:", mail),
-                    details("Phone no:",""),
-                    details("Location:", ""),
                     StreamBuilder<QuerySnapshot>(
                         stream: _firestore
                             .collection('people')
