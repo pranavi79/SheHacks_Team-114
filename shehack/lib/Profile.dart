@@ -6,6 +6,7 @@ import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'edit_profile.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 class Profile extends StatefulWidget {
@@ -34,6 +35,35 @@ class _ProfileState extends State<Profile> {
 
   }
 
+  Widget details(String details){
+    return Column(
+      children: [
+        SizedBox(
+          height:5,
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 15.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: 10,
+              ),
+              Text(
+                details,
+                style: GoogleFonts.montserrat(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black, //blueAccent,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
   Widget build(BuildContext context) {
     //curr=auth.currentUser;
     username=curr.displayName;
@@ -47,8 +77,7 @@ class _ProfileState extends State<Profile> {
              flex: 1,
              child: Container(
                decoration: BoxDecoration(
-                 //borderRadius: BorderRadius.only(bottomRight: Radius.circular(30.0), bottomLeft: Radius.circular(30.0)),
-                 color: Color(0xFF5CE1E6),//Color(0xff00ccff),//Colors.pinkAccent,
+                 color: Color(0xffccffff),//Color(0xff00ccff),//Color(0xFF5CE1E6),
                ),
                width: (MediaQuery.of(context).size.width),
                child: SafeArea(
@@ -56,46 +85,54 @@ class _ProfileState extends State<Profile> {
                    crossAxisAlignment: CrossAxisAlignment.center,
                    //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                    children: [
-                     Row(
-                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                       children: [
-                         Padding(
-                           padding: EdgeInsets.only(left: 15.0,top: 20.0,right:15.0),// EdgeInsets.all(15.0),
-                           child: Text(
-                             "Welcome to Your Profile",
-                             style: TextStyle(
-                               fontSize: 28.0,
-                               fontWeight: FontWeight.bold,
-                               color: Colors.white, //blueAccent,
+                     Container(
+                       decoration: BoxDecoration(
+                          color: Color(0xFF5CE1E6),
+                 //Color(0xff00ccff),
+                         borderRadius: BorderRadius.only(bottomRight: Radius.circular(30.0), bottomLeft: Radius.circular(30.0)),
+                        ),
+                       child: Row(
+
+                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                         children: [
+                           Padding(
+                             padding: EdgeInsets.only(left: 15.0,top: 20.0,right:15.0),// EdgeInsets.all(15.0),
+                             child: Text(
+                               "Welcome to Your Profile",
+                               style: TextStyle(
+                                 fontSize: 28.0,
+                                 fontWeight: FontWeight.bold,
+                                 color: Colors.white, //blueAccent,
+                               ),
                              ),
                            ),
-                         ),
-                         Padding(
-                           padding: const EdgeInsets.all(15.0),
-                           child: BackButton(
-                             color: Colors.white,
-                             onPressed: (){
-                               Navigator.push(context, MaterialPageRoute(
-                                 builder: (context) => HomeScreen(curr: curr),
-                               )
-                               );
-                             },
-                           ),
-                         )
-                       ],
+                           Padding(
+                             padding: const EdgeInsets.all(15.0),
+                             child: BackButton(
+                               color: Colors.white,
+                               onPressed: (){
+                                 Navigator.push(context, MaterialPageRoute(
+                                   builder: (context) => HomeScreen(curr: curr),
+                                 )
+                                 );
+                               },
+                             ),
+                           )
+                         ],
+                       ),
                      ),
                      SizedBox(
-                       height: 20,
+                       height: 40,
                      ),
                      CircleAvatar(
-                       backgroundColor: Colors.pinkAccent,//Color(0xff00ccff),
-                       maxRadius: 40,
+                       backgroundColor: Color(0xFF5CE1E6),//Color(0xff00ccff),
+                       maxRadius: 45,
                        child: Text(
                            '$initial',
                            style: TextStyle(
-                             fontSize: 30.0,
+                             fontSize: 35.0,
                              fontWeight: FontWeight.bold,
-                             color: Colors.white,//Color(0xff00ccff),//Colors.pinkAccent,
+                             color: Colors.white,//Color(0xff00ccff),//Color(0xFF5CE1E6),
                            ),
                        ),
                      ),
@@ -112,21 +149,15 @@ class _ProfileState extends State<Profile> {
                              mainAxisAlignment: MainAxisAlignment.center,
                              crossAxisAlignment: CrossAxisAlignment.center,
                              children: [
-                              //  Image.asset(
-                              //    'images/defaultProfile.png',
-                              //    colorBlendMode: BlendMode.colorDodge,
-                              //    width: 75,
-                              //    height: 75,
-                              //  ),
                                SizedBox(
                                  width: 10,
                                ),
                                Text(
                                  '$username',
-                                 style: TextStyle(
+                                 style: GoogleFonts.montserrat(
                                    fontSize: 25.0,
                                    fontWeight: FontWeight.bold,
-                                   color: Colors.white, //blueAccent,
+                                   color: Colors.black, //blueAccent,
                                  ),
                                ),
                              ],
@@ -145,7 +176,7 @@ class _ProfileState extends State<Profile> {
                                ),
                              ),
                              style: ButtonStyle(
-                               backgroundColor: MaterialStateProperty.all<Color>(Colors.pinkAccent),
+                               backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF5CE1E6)),
                              ),
 
 
@@ -155,66 +186,12 @@ class _ProfileState extends State<Profile> {
                        ),
                      ),
                      SizedBox(
-                       height: 10,
-                     ),
-                     Padding(
-                       padding: const EdgeInsets.only(left: 15.0),//EdgeInsets.all(15.0),
-                       child: Row(
-                         mainAxisAlignment: MainAxisAlignment.start,
-                         children: [
-                           SizedBox(
-                             width: 10,
-                           ),
-                           Text(
-                             "Email: $mail",
-                             style: TextStyle(
-                               fontSize: 17.0,
-                               fontWeight: FontWeight.bold,
-                               color: Colors.white, //blueAccent,
-                             ),
-                           ),
-                         ],
-                       ),
-                     ),
-                     Padding(
-                       padding: const EdgeInsets.only(left: 15.0),
-                       child: Row(
-                         mainAxisAlignment: MainAxisAlignment.start,
-                         children: [
-                           SizedBox(
-                             width: 10,
-                           ),
-                           Text(
-                             "Phone Number: ",
-                             style: TextStyle(
-                               fontSize: 17.0,
-                               fontWeight: FontWeight.bold,
-                               color: Colors.white, //blueAccent,
-                             ),
-                           ),
-                         ],
-                       ),
-                     ),
-                     Padding(
-                       padding: const EdgeInsets.only(left: 15.0),
-                       child: Row(
-                         mainAxisAlignment: MainAxisAlignment.start,
-                         children: [
-                           SizedBox(
-                             width: 10,
-                           ),
-                           Text(
-                             "Location: ",
-                             style: TextStyle(
-                               fontSize: 17.0,
-                               fontWeight: FontWeight.bold,
-                               color: Colors.white, //blueAccent,
-                             ),
-                           ),
-                         ],
-                       ),
+                       height: 20,
                      ),
 
+                     details("Email: $mail"),
+                     details("Phone no:"),
+                     details("Location:"),
                    ],
 
                  ),
@@ -232,22 +209,22 @@ class _ProfileState extends State<Profile> {
         label: Text(
             'Sign Out',
           // style: TextStyle(
-          //   color: Colors.pinkAccent,
+          //   color: Color(0xFF5CE1E6),
           // ),
         ),
         //icon: Icon(Icons.thumb_up),
-        backgroundColor: Color(0xff00ccff),//Colors.blueAccent,
+        backgroundColor: Color(0xFF5CE1E6),//Color(0xff00ccff),//Colors.blueAccent,
       ),
 
       bottomNavigationBar: SafeArea(
         child: BottomAppBar(
-          color: Color(0xffccffff),//Colors.blue,//Color(0xff40e0d0),//Colors.blue,
+          color: Color(0xFF5CE1E6),//Colors.blue,//Color(0xff40e0d0),//Colors.blue,
           child: Row(
             children: [
               IconButton(
                 icon: Icon(Icons.menu),
                 onPressed: () {},
-                color: Color(0xffccffff),//Colors.blue,
+                color: Color(0xff66ccff),//Colors.blue,
               ),
 
             ],
