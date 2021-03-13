@@ -222,6 +222,7 @@ class FormViewState extends State<FormView> {
             'location': location,
             'contact': contact,
             'user': FirebaseAuth.instance.currentUser.displayName,
+            'interestedPeople': [],
           });
           Navigator.pop(context);
         },
