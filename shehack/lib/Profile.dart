@@ -7,8 +7,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'edit_profile.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
-
 final _firestore = FirebaseFirestore.instance;
 
 class Profile extends StatefulWidget {
@@ -73,7 +71,6 @@ class _ProfileState extends State<Profile> {
     username = curr.displayName;
     mail = curr.email;
     initial = username.substring(0, 1);
-
 
     return Scaffold(
       appBar: AppBar(
@@ -170,10 +167,7 @@ class _ProfileState extends State<Profile> {
                       style: TextStyle(
                         fontSize: 20,
                       ),
-                      ),
-                    //details("Mail:", mail),
-                    details("Phone no:",""),
-                    details("Location:", ""),
+                    ),
                     StreamBuilder<QuerySnapshot>(
                         stream: _firestore
                             .collection('people')
@@ -183,18 +177,16 @@ class _ProfileState extends State<Profile> {
                           if (!snapshot.hasData) {
                             return Center(
                               child: CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+                                valueColor:
+                                    AlwaysStoppedAnimation<Color>(Colors.blue),
                               ),
                             );
-                          }
-                          else{
+                          } else {
                             final t = snapshot.data.docs[0];
-                            phone=t.data()['phone'];
+                            phone = t.data()['phone'];
                             return details("Phone no:", phone);
                           }
-                        }
-                    ),
-
+                        }),
                     StreamBuilder<QuerySnapshot>(
                         stream: _firestore
                             .collection('people')
@@ -204,17 +196,16 @@ class _ProfileState extends State<Profile> {
                           if (!snapshot.hasData) {
                             return Center(
                               child: CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+                                valueColor:
+                                    AlwaysStoppedAnimation<Color>(Colors.blue),
                               ),
                             );
-                          }
-                          else{
+                          } else {
                             final t = snapshot.data.docs[0];
-                            location=t.data()['location'];
+                            location = t.data()['location'];
                             return details("Location:", location);
                           }
-                        }
-                        ),
+                        }),
                   ],
                 ),
               ),
