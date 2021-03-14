@@ -38,4 +38,5 @@ Users on the app can see the events posted along with their location and organiz
 -   Features to add events directly to your calendar
 -   Include a donate option (after a strict and mandatory verification).
 
-## PPT Link: https://docs.google.com/presentation/d/1xlZtdS-W-TgZ--RBcKlnuz8LWRCYu_5H/edit#slide=id.p1
+## PPT Link: 
+https://docs.google.com/presentation/d/1xlZtdS-W-TgZ--RBcKlnuz8LWRCYu_5H/edit#slide=id.p1
